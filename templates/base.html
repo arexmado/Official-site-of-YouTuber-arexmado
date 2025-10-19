@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AREXMADO 팬카페 | YouTube 커뮤니티</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 selection:bg-cyan-400/40">
+
+<header class="fixed inset-x-0 top-0 z-50 backdrop-blur bg-slate-900/80 border-b border-slate-800">
+  <div class="mx-auto max-w-6xl px-4 py-3 flex items-center gap-4">
+    <a href="{{ url_for('index') }}" class="flex items-center gap-2">
+      <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-cyan-500 font-bold text-slate-900">A</span>
+      <span class="font-semibold">AREXMADO 팬카페</span>
+    </a>
+    <nav class="ml-auto hidden md:flex gap-5 text-sm text-slate-300">
+      <a href="#news" class="hover:text-white">공지</a>
+      <a href="#videos" class="hover:text-white">최신 영상</a>
+      <a href="#events" class="hover:text-white">이벤트</a>
+      <a href="#gallery" class="hover:text-white">팬아트</a>
+      <a href="#schedule" class="hover:text-white">일정</a>
+      <a href="{{ url_for('community') }}" class="hover:text-white">커뮤니티</a>
+      <a href="#faq" class="hover:text-white">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main class="pt-28">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="text-center py-6 border-t border-slate-800 bg-slate-900/60">
+  <p class="text-slate-400">&copy; 2025 AREXMADO 팬카페. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

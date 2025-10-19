@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="mx-auto max-w-6xl px-4 mt-16">
+<h2 class="text-2xl font-bold mb-4">🎨 팬아트 갤러리</h2>
+
+<form method="post" enctype="multipart/form-data" class="mb-6">
+  <input type="text" name="nickname" placeholder="닉네임" class="w-full mb-2 p-2 rounded-lg text-black" required>
+  <input type="file" name="image" accept="image/*" class="mb-2" required>
+  <button type="submit" class="px-4 py-2 bg-cyan-500 rounded-lg text-black font-semibold">업로드</button>
+</form>
+
+<div class="grid md:grid-cols-3 gap-4">
+{% for item in gallery %}
+  <div class="rounded-lg border border-slate-800 overflow-hidden">
+    <img src="{{ url_for('static', filename='uploads/' + item.filename) }}" alt="팬아트" class="w-full">
+    <p class="text-center mt-1">{{ item.nickname }}</p>
+  </div>
+{% endfor %}
+</div>
+</section>
+{% endblock %}

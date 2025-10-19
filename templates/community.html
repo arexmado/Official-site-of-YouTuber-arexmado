@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="mx-auto max-w-6xl px-4 mt-16">
+<h2 class="text-2xl font-bold mb-4">💬 커뮤니티</h2>
+
+<form method="post" class="mb-6">
+  <input type="text" name="nickname" placeholder="닉네임" class="w-full mb-2 p-2 rounded-lg text-black" required>
+  <input type="text" name="title" placeholder="제목" class="w-full mb-2 p-2 rounded-lg text-black" required>
+  <textarea name="content" placeholder="내용" class="w-full mb-2 p-2 rounded-lg text-black" rows="4" required></textarea>
+  <button type="submit" class="px-4 py-2 bg-cyan-500 rounded-lg text-black font-semibold">게시</button>
+</form>
+
+{% for idx, post in posts|enumerate %}
+<div class="p-4 bg-slate-900 rounded-lg border border-slate-800 mb-4">
+  <strong>{{ post.title }} - {{ post.nickname }}</strong> (👍 {{ post.likes }})
+  <p class="mt-2">{{ post.content }}</p>
+  <a href="{{ url_for('like', post_idx=idx) }}" class="text-cyan-400">좋아요</a>
+  
+  <form method="post" action="{{ url_for('comment', post_idx=idx) }}" class="mt-2">
+    <input type="text" name="nickname" placeholder="닉네임" class="mb-1 p-1 w-full rounded" required>
+    <input type="text" name="comment" placeholder="댓글" class="mb-1 p-1 w-full rounded" required>
+    <button type="submit" class="bg-blue-500 px-2 py-1 rounded">댓글</button>
+  </form>
+
+  {% if post.comments %}
+    <div class="mt-2 ml-4">
+    {% for c in post.comments %}
+      <p><strong>{{ c.nickname }}:</strong> {{ c.content }}</p>
+    {% endfor %}
+    </div>
+  {% endif %}
+</div>
+{% endfor %}
+
+</section>
+{% endblock %}
